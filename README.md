@@ -13,7 +13,7 @@ This application provides intelligent book recommendation and analysis features 
     * Classifies books into Fiction or Non-Fiction categories, even without explicit labels in the dataset.
 
 3. Sentiment & Emotion Analysis
-    * Leverages the fine-tuned open-source model j-hartmann/emotion-english-distilroberta-base from Hugging Face.
+    * Leverages the fine-tuned open-source model `j-hartmann/emotion-english-distilroberta-base` from Hugging Face.
     * Analyzes book descriptions to determine the dominant sentiment/emotion.
     * Supports multiple emotion classes, including joy, sadness, anger, fear, surprise, disgust, and neutral.
 

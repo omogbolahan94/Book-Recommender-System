@@ -1,5 +1,6 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
+
 from dotenv import load_dotenv
 
 from langchain_community.document_loaders import TextLoader
@@ -7,17 +8,20 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_chroma import Chroma
 
+
+
 load_dotenv()
 
-books = pd.read_csv("../books_with_emotions.csv")
+books = pd.read_csv("../books_with_categories_and_emotions.csv")
 books["large_thumbnail"] = books["thumbnail"] + "&fife=w800"
 books["large_thumbnail"] = np.where(books["large_thumbnail"].isna(), 
-                                    "cover-not-found.jpg", 
+                                    "..img/page-cover-not-found.png", 
                                     books["large_thumbnail"],
                             )
 
-raw_documents = TextLoader("tagged_description.txt").load()
-text_splitter = CharacterTextSplitter(separator="\n", chunk_size=0, chunk_overlap=0)
+raw_documents = TextLoader("../tagged_description.txt", encoding="utf-8").load()
+chunk_size = books["tagged_description"].str.len().values[0]
+text_splitter = CharacterTextSplitter(separator="\n", chunk_size=chunk_size, chunk_overlap=0)
 documents = text_splitter.split_documents(raw_documents)
 db_books = Chroma.from_documents(documents, OpenAIEmbeddings())
 
