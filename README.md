@@ -11,10 +11,16 @@ uv venv .venv
 ```{bash}
 source .venv/Scripts/activate
 ```
-* Install other dependencies:
+* Install Langchain dependencies:
 ```{bash}
 uv pip install numpy pandas matplotlib seaborn
 uv pip install langchain langchain_community
 uv pip install langchain_openai
 uv pip install langchain_chroma
+```
+
+* Install Huggingface dependencies for zero-shot classifier pre-trained model:
+```{bash}
+uv pip install transformers, torch
+pip install hf_xet
 ```
