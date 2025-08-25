@@ -24,3 +24,8 @@ uv pip install langchain_chroma
 uv pip install transformers, torch
 pip install hf_xet
 ```
+
+* Install gradio module for application interface:
+```{bash}
+uv pip install --upgrade gradio
+```
