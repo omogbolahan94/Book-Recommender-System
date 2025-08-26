@@ -55,8 +55,12 @@ uv pip install --upgrade gradio
 ```
 
 ### Deployment on Huggingface
+* Authenticates your machine to the Hugging Face Hub using an access token:
+```{bash}
+huggingface-cli login
+```
 * Create a space on Huggingface
-* Clone you huggingface repo:
+* Clone you huggingface space:
 ```{bash}
 git clone https://huggingface.co/spaces/<username>/<repo name>
 ```
