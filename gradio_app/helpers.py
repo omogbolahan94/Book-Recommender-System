@@ -9,17 +9,16 @@ from langchain_text_splitters import CharacterTextSplitter
 from langchain_chroma import Chroma
 
 
-
 load_dotenv()
 
-books = pd.read_csv("../books_with_categories_and_emotions.csv")
+books = pd.read_csv("data/books_with_categories_and_emotions.csv")
 books["large_thumbnail"] = books["thumbnail"] + "&fife=w800"
 books["large_thumbnail"] = np.where(books["large_thumbnail"].isna(), 
-                                    "..img/page-cover-not-found.png", 
+                                    "img/page-cover-not-found.png", 
                                     books["large_thumbnail"],
                             )
 
-raw_documents = TextLoader("../tagged_description.txt", encoding="utf-8").load()
+raw_documents = TextLoader("data/tagged_description.txt", encoding="utf-8").load()
 chunk_size = books["tagged_description"].str.len().values[0]
 text_splitter = CharacterTextSplitter(separator="\n", chunk_size=chunk_size, chunk_overlap=0)
 documents = text_splitter.split_documents(raw_documents)
