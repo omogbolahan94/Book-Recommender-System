@@ -1,2 +1,6 @@
 .env
 .venv
+
+hf-book-recommender
+
+gradio_app/__pycache__
