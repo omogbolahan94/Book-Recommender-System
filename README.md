@@ -43,7 +43,7 @@ uv pip install langchain_openai
 uv pip install langchain_chroma
 ```
 
-* Install Huggingface dependencies for zero-shot classifier pre-trained model:
+* Install Huggingface zero-shot classifier pre-trained model:
 ```{bash}
 uv pip install transformers, torch
 pip install hf_xet
@@ -52,4 +52,27 @@ pip install hf_xet
 * Install gradio module for application interface:
 ```{bash}
 uv pip install --upgrade gradio
+```
+
+### Deployment on Huggingface
+* Create a space on Huggingface
+* Clone you huggingface repo:
+```{bash}
+git clone https://huggingface.co/spaces/<username>/<repo name>
+```
+* Copy all files from gradio_app into the repo above:
+```{bash}
+cp -r README.md gradio_app/data gradio_app/img gradio_app/app.py gradio_app/helpers.py requirements.txt <repo name>/
+```
+* CD into the cloned repo:
+```{bash}
+cd <repo name>
+```
+* Hugging Face requires binary files like images to be tracked with Git LFS.In our case we have PNG:
+```{bash}
+git lfs install
+git lfs track "*.png"
+git add .
+git commit -m "<commit message>"
+git push origin main
 ```
